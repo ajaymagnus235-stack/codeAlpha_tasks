@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI FAQ Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <header class="app-header">
+        <div>
+            <div class="brand">FAQ AI Assistant</div>
+            <p class="subtitle">Ask questions and get fast, friendly answers from your knowledge base.</p>
+        </div>
+        <div class="status-pill">Live · Ready</div>
+    </header>
+
+    <div id="chat-box">
+        <div class="message bot welcome">
+            <div class="avatar bot-avatar">🤖</div>
+            <div class="bubble">
+                Hi there! Ask me anything about the FAQ and I’ll help you find the answer.
+            </div>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Type your question here..."
+            autocomplete="off"
+        >
+        <button type="button" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+
+const input=document.getElementById("userInput");
+const chatBox=document.getElementById("chat-box");
+
+input.addEventListener("keypress",function(event){
+    if(event.key==="Enter"){
+        sendMessage();
+    }
+});
+
+function addChatMessage(role, text){
+    const direction = role === 'user' ? 'user' : 'bot';
+    chatBox.innerHTML += `
+        <div class="message ${direction} animate">
+            ${role === 'bot' ? '<div class="avatar bot-avatar">🤖</div>' : ''}
+            <div class="bubble">${text}</div>
+            ${role === 'user' ? '<div class="avatar user-avatar">👤</div>' : ''}
+        </div>
+    `;
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function sendMessage(){
+    const message=input.value.trim();
+    if(!message) return;
+
+    addChatMessage('user', message);
+    input.value = '';
+
+    fetch("/chat",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({ message: message })
+    })
+    .then(response=>response.json())
+    .then(data=>{
+        addChatMessage('bot', data.response);
+    });
+}
+
+</script>
+
+</body>
+</html>

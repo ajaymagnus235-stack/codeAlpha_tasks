@@ -1,0 +1,22 @@
+[
+{"question":"What is AI?","answer":"Artificial Intelligence is the simulation of human intelligence by machines."},
+{"question":"What is Machine Learning?","answer":"Machine Learning is a subset of AI that learns from data."},
+{"question":"What is Deep Learning?","answer":"Deep Learning uses neural networks with many layers."},
+{"question":"What is Python?","answer":"Python is a popular programming language."},
+{"question":"What is Flask?","answer":"Flask is a lightweight Python web framework."},
+{"question":"What is NLP?","answer":"NLP stands for Natural Language Processing."},
+{"question":"What is Data Science?","answer":"Data Science extracts insights from data."},
+{"question":"What is a Neural Network?","answer":"A Neural Network is a model inspired by the human brain."},
+{"question":"What is Computer Vision?","answer":"Computer Vision enables computers to understand images and videos."},
+{"question":"What is a Dataset?","answer":"A dataset is a collection of data used for analysis or training."},
+{"question":"What is Supervised Learning?","answer":"Supervised Learning uses labeled data for training."},
+{"question":"What is Unsupervised Learning?","answer":"Unsupervised Learning finds patterns in unlabeled data."},
+{"question":"What is Reinforcement Learning?","answer":"Reinforcement Learning learns through rewards and penalties."},
+{"question":"What is an Algorithm?","answer":"An algorithm is a step-by-step procedure for solving a problem."},
+{"question":"What is a Chatbot?","answer":"A chatbot is a program that simulates conversation with users."},
+{"question":"What is OpenCV?","answer":"OpenCV is a library for computer vision and image processing."},
+{"question":"What is YOLO?","answer":"YOLO is a real-time object detection algorithm."},
+{"question":"What is GitHub?","answer":"GitHub is a platform for hosting and managing code repositories."},
+{"question":"What is a Database?","answer":"A database is an organized collection of data."},
+{"question":"What is Cloud Computing?","answer":"Cloud Computing provides computing services over the internet."}
+]

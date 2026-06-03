@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   git config --global user.name "ajaymagnus235-stack" <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAlpha Translator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-mark">C</span>
+                <div>
+                    <p class="brand-name">CodeAlpha</p>
+                    <p class="brand-subtitle">Translator Studio</p>
+                </div>
+            </div>
+            <nav class="meta-nav">
+                <span class="meta-item">Fast</span>
+                <span class="meta-item">Elegant</span>
+                <span class="meta-item">Responsive</span>
+            </nav>
+        </header>
+
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <span class="eyebrow">Built for quick translation</span>
+                <h1>Translate your ideas into any language with confidence.</h1>
+                <p>Create flawless translations instantly, with a sleek interface made for speed and clarity.</p>
+                <div class="hero-highlights">
+                    <div><strong>✓</strong> Live translation preview</div>
+                    <div><strong>✓</strong> Save time with smart defaults</div>
+                    <div><strong>✓</strong> Designed for web and mobile</div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-frame">
+                    <div class="hero-header-bar"></div>
+                    <div class="hero-card">
+                        <p class="card-title">Sample translation</p>
+                        <p class="card-text">"Welcome to CodeAlpha, your smart translation helper."</p>
+                        <span class="card-badge">English → Hindi</span>
+                    </div>
+                </div>
+                <div class="floating-chip">New look</div>
+                <div class="floating-chip secondary">Smooth UI</div>
+            </div>
+        </section>
+
+        <main class="translator-wrapper">
+            <section class="translator-card">
+                <div class="card-header">
+                    <div>
+                        <p class="label">Translator</p>
+                        <h2>Write and convert text</h2>
+                    </div>
+                    <span class="chip">AI-powered</span>
+                </div>
+
+                <form method="POST" class="translator-form">
+                    <label class="field-label" for="text">Type text</label>
+                    <textarea id="text" name="text" rows="6" placeholder="Enter text here...">{{ text }}</textarea>
+
+                    <div class="field-group-inline">
+                        <div class="input-group">
+                            <label class="field-label" for="target">Target language</label>
+                            <select id="target" name="target">
+                                <option value="hi" {% if target_language == 'hi' %}selected{% endif %}>Hindi</option>
+                                <option value="te" {% if target_language == 'te' %}selected{% endif %}>Telugu</option>
+                                <option value="fr" {% if target_language == 'fr' %}selected{% endif %}>French</option>
+                                <option value="es" {% if target_language == 'es' %}selected{% endif %}>Spanish</option>
+                                <option value="de" {% if target_language == 'de' %}selected{% endif %}>German</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="translate-button">Translate</button>
+                    </div>
+                </form>
+
+                {% if error %}
+                <div class="notice error-notice">{{ error }}</div>
+                {% endif %}
+            </section>
+
+            <section class="result-card">
+                <div class="result-header">
+                    <div>
+                        <p class="label">Output</p>
+                        <h2>Translation result</h2>
+                    </div>
+                    {% if translated_text %}
+                    <button type="button" class="copy-button" onclick="copyResult()">Copy</button>
+                    {% endif %}
+                </div>
+
+                {% if translated_text %}
+                <div class="result-body">
+                    <p class="result-language">{{ target_language | upper }}</p>
+                    <p class="result-text" id="resultText">{{ translated_text }}</p>
+                </div>
+                {% else %}
+                <div class="result-placeholder">
+                    <p>Submit text to view the translation here.</p>
+                </div>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function copyResult() {
+            const result = document.getElementById('resultText');
+            if (!result) return;
+            navigator.clipboard.writeText(result.innerText).then(() => {
+                alert('Translated text copied to clipboard.');
+            });
+        }
+    </script>
+</body>
+</html>
